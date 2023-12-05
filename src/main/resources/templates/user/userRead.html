@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{template :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoas Cadastradas</title>
+</head>
+<main>
+  <h2>Registro de Pessoas</h2>
+  <table class="table is-borded">
+      <tr>
+          <td>ID</td>
+          <td>LOGIN</td>
+          <td>SENHA</td>
+          <td>EMAIL</td>
+          <td>NOME</td>
+      </tr>
+      <tr th:each="p : ${users}"> <!-- th:each = FOREACH user on users  -->
+          <td th:text="${p.id}"></td>
+          <td th:text="${p.login}"></td>
+          <td th:text="${p.password}"></td>
+          <td th:text="${p.email}"></td>
+          <td th:text="${p.name}"></td>
+          <td>
+              <a th:href="@{/user/update/{id}(id=${p.id})}">[E]</a>
+              <a th:href="@{/user/delete/{id}(id=${p.id})}">[R]</a>
+          </td>
+      </tr>
+  </table>
+    <a href="/">Voltar para pag. inicial</a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</main>
+</html>

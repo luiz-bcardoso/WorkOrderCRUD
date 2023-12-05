@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{template :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoas Cadastradas</title>
+</head>
+<body>
+<main>
+    <div>
+    <form action="#" th:action = "@{/user/save}" th:object="${user}" method="post">
+        <table>
+            <tr>
+                <td><h4> Login: </h4></td>
+                <td><input class="input is-primary" type="text" th:field="*{login}" required></td>
+            </tr>
+            <tr>
+                <<td><h4> Senha: </h4></td>
+                <td><input class="input is-primary" type="password" th:field="*{password}" required></td>
+            </tr>
+            <tr>
+                <td><h4> Email: </h4></td>
+                <td><input class="input is-primary" type="text" th:field="*{email}" required></td>
+            </tr>
+            <tr>
+                <td><h4> Nome: </h4></td>
+                <td><input class="input is-primary" type="text" th:field="*{name}" required></td>
+            </tr>
+            <tr>
+                <td><h4> Cargo: </h4></td>
+                <td><input class="input is-primary" type="text" th:field="*{role}" required></td>
+            </tr>
+        </table>
+        <input type="submit">
+    </form>
+    </div>
+</main>
+</body>
+</html>

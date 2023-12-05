@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring Security Example </title>
+</head>
+<body>
+<div th:if="${param.error}">
+  ERRO: Usuário ou senha inválido!
+</div>
+<div th:if="${param.logout}">
+  Você foi desconectado do sistema.
+</div>
+<form th:action="@{/login}" method="post">
+  <div><label> Login: <input type="text" name="username"/> </label></div>
+  <div><label> Senha: <input type="password" name="password"/> </label></div>
+  <div><input type="submit" value="Logar"/></div>
+</form>
+</body>
+</html>

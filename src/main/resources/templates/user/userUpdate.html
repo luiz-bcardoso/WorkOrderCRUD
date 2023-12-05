@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Atualizar</title>
+</head>
+<body>
+<!--                                                        post = esconde @nome=xxx&-->
+<form action="#" th:action = "@{/pessoa/alterar}" th:object="${pessoa}" method="post">
+  <table>
+    <tr>
+      <td><h4> Id: </h4></td>
+      <td><input type="text" th:field="*{id}" readonly></td>
+    </tr>
+
+    <tr>
+      <td><h4> Nome: </h4></td>
+      <td><input type="text" th:field="*{nome}" required></td>
+    </tr>
+
+    <tr>
+      <td><h4> Email: </h4></td>
+      <td><input type="text" th:field="*{email}" required></td>
+    </tr>
+
+    <tr>
+      <<td><h4> Fone: </h4></td>
+      <td><input type="text" th:field="*{telefone}" required></td>
+    </tr>
+  </table>
+
+  <input type="submit" value="Alterar">
+</form>
+
+</body>
+</html>

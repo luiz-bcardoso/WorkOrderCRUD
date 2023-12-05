@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+</head>
+<body>
+<div>
+    <h2 th:inline="text">Bem-vindo <span th:remove="tag" sec:authentication="name">usuário</span>!</h2>
+    <a>Selecione uma opção abaixo:</a>
+
+    <div>
+        <a href="/user/list">1. Registro de Pessoas</a>
+    </div>
+    <div>
+        <a href="/">2. Registro de Ordens Serviço (WIP)</a>
+    </div>
+
+    <h2>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </h2>
+</div>
+
+
+</body>
+</html>
