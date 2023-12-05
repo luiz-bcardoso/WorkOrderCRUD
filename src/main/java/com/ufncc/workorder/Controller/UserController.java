@@ -29,7 +29,7 @@ public class UserController {
         model.addAttribute("user", new User());
 
         // Send user to userCreate.html form.
-        return "/user/userCreate";
+        return "user/userCreate";
     }
 
     @PostMapping("/sign-up/success")
@@ -47,13 +47,13 @@ public class UserController {
     }
 
     // User listing on an HTML Table, Role: 'TECNICO'
-    @GetMapping("/user/list")
+    @GetMapping("/list")
     public String listUser(@ModelAttribute User usr, Model model){
         // Get all users from repo and save it on a list.
         List<User> userList = (List<User>) userRepo.findAll();
         model.addAttribute("users", userList);
 
-        return "/user/userRead";
+        return "user/userRead";
     }
 
 

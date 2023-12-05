@@ -2,12 +2,12 @@
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{template :: layout (~{:: main})}">
 <head>
     <meta charset="UTF-8">
-    <title>Pessoas Cadastradas</title>
+    <title>Criar conta</title>
 </head>
 <body>
 <main>
     <div>
-    <form action="#" th:action = "@{/user/save}" th:object="${user}" method="post">
+    <form action="#" th:action = "@{/user/sign-up/success}" th:object="${user}" method="post">
         <table>
             <tr>
                 <td><h4> Login: </h4></td>
