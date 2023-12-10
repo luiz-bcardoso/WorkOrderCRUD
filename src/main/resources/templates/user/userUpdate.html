@@ -1,32 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Atualizar</title>
+  <title>Atualizar Cadastro</title>
 </head>
 <body>
 <!--                                                        post = esconde @nome=xxx&-->
-<form action="#" th:action = "@{/pessoa/alterar}" th:object="${pessoa}" method="post">
+<form action="#" th:action = "@{/user/update}" th:object="${user}" method="post">
   <table>
     <tr>
-      <td><h4> Id: </h4></td>
-      <td><input type="text" th:field="*{id}" readonly></td>
+      <td><label> Id: </label></td>
+      <td><input class="input is-primary" type="text" th:field="*{id}" readonly></td>
     </tr>
 
     <tr>
-      <td><h4> Nome: </h4></td>
-      <td><input type="text" th:field="*{nome}" required></td>
+      <td><label> Login: </label></td>
+      <td><input class="input is-primary" type="text" th:field="*{username}" required></td>
     </tr>
 
     <tr>
-      <td><h4> Email: </h4></td>
-      <td><input type="text" th:field="*{email}" required></td>
+      <td><label> Senha: </label></td>
+      <td><input class="input is-primary" type="password" th:field="*{password}" required></td>
     </tr>
 
     <tr>
-      <<td><h4> Fone: </h4></td>
-      <td><input type="text" th:field="*{telefone}" required></td>
+      <td><label> Email: </label></td>
+      <td><input class="input is-primary" type="text" th:field="*{email}" required></td>
     </tr>
+
+    <tr>
+      <td><label> Nome: </label></td>
+      <td><input class="input is-primary" type="text" th:field="*{name}" required></td>
+    </tr>
+
+    <tr>
+      <td><label> Cargo: </label></td>
+      <td><input class="input is-primary" type="text" th:field="*{role}" required></td>
+    </tr>
+
   </table>
 
   <input type="submit" value="Alterar">
