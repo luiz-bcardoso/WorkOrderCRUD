@@ -29,7 +29,7 @@ public class CustomUserDetails implements org.springframework.security.core.user
                 .orElseThrow(() -> new UsernameNotFoundException("User not exists by Username or Email"));
 
         // Singleton ensures user have only one role (needed a collection for UserDetails)
-        Set<GrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority(user.getName()));
+        Set<GrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
 
         return new org.springframework.security.core.userdetails.User(
                 usernameOrEmail,

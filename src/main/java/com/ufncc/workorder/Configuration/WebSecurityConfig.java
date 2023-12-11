@@ -4,12 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.http.HttpMethod;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,14 +24,26 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity https) throws Exception{
         https
-                // Disables 'csrf' configuration
-                .csrf(csrf -> csrf.disable())
-
-                // All users can register and save a new account, only ROLE_ADMIN can access a list of those users.
-                // All other requests, authentication is required.
                 .authorizeHttpRequests((authorize) -> authorize
+                        // All users can register and save a new account;
                         .requestMatchers("/auth/register", "/auth/save", "/").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user/list").hasRole("ADMIN")
+
+                        // Only 'ADMINS' and 'TECNICO' can access the User's CRUD
+                        .requestMatchers("/user/list").hasAnyRole("ADMIN","TECNICO")
+                        .requestMatchers("/user/updade/*").hasAnyRole("ADMIN","TECNICO")
+                        .requestMatchers("/user/delete/*").hasAnyRole("ADMIN","TECNICO")
+
+                        // Only 'ADMINS' and 'TECNICO' and 'SOLICITANTE' can access the Order's CRUD
+                        .requestMatchers("/order/list").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
+                        .requestMatchers("/order/updade/*").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
+                        .requestMatchers("/order/delete/*").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
+
+                        // DEBUG: Remove after
+                        //TODO: remove prototype page for order's crud.
+                        .requestMatchers("/user/solicita").hasRole("SOLICITANTE")
+                        .requestMatchers("/user/arruma").hasRole("TECNICO")
+
+                                // All other requests, authentication is required.
                         .anyRequest().authenticated()
 
                 // All users can log in into the system.

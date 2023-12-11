@@ -23,7 +23,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-
     // User listing on an HTML Table, Role: 'ROLE_ADMIN'
     @GetMapping("/list")
     public String listUser(@ModelAttribute User usr, Model model){
@@ -35,12 +34,12 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public  String getUpdateUserData(Model model, @PathVariable Long id){
+    public String getUpdateUserData(Model model, @PathVariable Long id){
 
         // SELECT * FROM {table} WHERE ID = {id}
         User getUser = userRepo.findById(Math.toIntExact(id)).get();
 
-        // Pega essa pessoa e pega como pessoa
+        // Get user as user
         model.addAttribute("user", getUser);
 
         // Redirects user to userUpdate.html's form.
@@ -57,8 +56,8 @@ public class UserController {
         userRepo.save(newUser);
 
         // Update user's list.
-        List<User> listaPessoas = (List<User>) userRepo.findAll();
-        model.addAttribute("users", listaPessoas);
+        List<User> userList = (List<User>) userRepo.findAll();
+        model.addAttribute("users", userList);
 
         // Redirects user to userRead.html
         return "user/userRead";
@@ -74,9 +73,7 @@ public class UserController {
         List<User> userList = (List<User>) userRepo.findAll();
         model.addAttribute("users", userList);
 
-        // Redirects user to listarPessoa.html
+        // Redirects user to userRead.html
         return "user/userRead";
     }
-
-    //TODO: /delete for deleting a user
 }

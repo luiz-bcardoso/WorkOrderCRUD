@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{template :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordens Cadastradas</title>
+</head>
+<main>
+    <h2>Registro de Ordens Solicitadas</h2>
+    <table class="table is-borded">
+        <tr>
+            <td>ID</td>
+            <td>SALA</td>
+            <td>SOLICITANTE</td>
+            <td>DATA</td>
+            <td>BOX</td>
+            <td>EQUIPAMENTO</td>
+            <td>AÇÕES</td>
+        </tr>
+        <tr th:each="p : ${orders}"> <!-- th:each = FOREACH p on orders  -->
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.clinicNumber}"></td>
+            <td th:text="${p.user.username}"></td>
+            <td th:text="${p.creationDate}"></td>
+            <td th:text="${p.boxNumber}"></td>
+            <td th:text="${p.equipment}"></td>
+            <td>
+                <a th:href="@{/order/update/{id}(id=${p.id})}"><button>Detalhes</button></a>
+                <a th:href="@{/order/delete/{id}(id=${p.id})}"><button>Remover</button></a>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a href="/auth/welcome">
+            <button type="submit">Voltar página</button>
+        </a>
+        <a href="/order/create">
+            <button type="submit">Criar nova ordem</button>
+        </a>
+        <form th:action="@{/auth/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+</main>
+</html>
