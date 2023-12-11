@@ -29,21 +29,20 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/register", "/auth/save", "/").permitAll()
 
                         // Only 'ADMINS' and 'TECNICO' can access the User's CRUD
-                        .requestMatchers("/user/list").hasAnyRole("ADMIN","TECNICO")
-                        .requestMatchers("/user/updade/*").hasAnyRole("ADMIN","TECNICO")
+                        .requestMatchers("/user/*").hasAnyRole("ADMIN","TECNICO")
+                        .requestMatchers("/user/update/*").hasAnyRole("ADMIN","TECNICO")
                         .requestMatchers("/user/delete/*").hasAnyRole("ADMIN","TECNICO")
 
-                        // Only 'ADMINS' and 'TECNICO' and 'SOLICITANTE' can access the Order's CRUD
-                        .requestMatchers("/order/list").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
-                        .requestMatchers("/order/updade/*").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
-                        .requestMatchers("/order/delete/*").hasAnyRole("ADMIN","TECNICO", "SOLICITANTE")
+                        // Only 'ADMIN' and 'SOLICITANTE' can access the Order's CRUD
+                        .requestMatchers("/order/*").hasAnyRole("SOLICITANTE", "ADMIN")
+                        .requestMatchers("/order/update/*").hasAnyRole("SOLICITANTE", "ADMIN")
+                        .requestMatchers("/order/delete/*").hasAnyRole("SOLICITANTE", "ADMIN")
 
-                        // DEBUG: Remove after
-                        //TODO: remove prototype page for order's crud.
-                        .requestMatchers("/user/solicita").hasRole("SOLICITANTE")
-                        .requestMatchers("/user/arruma").hasRole("TECNICO")
+                        // Only 'ADMIN' and 'TECNICO' can access the Order's solution CRUD
+                        .requestMatchers("/solution/*").hasAnyRole("TECNICO", "ADMIN")
+                        .requestMatchers("/solution/update/*").hasAnyRole("TECNICO", "ADMIN")
 
-                                // All other requests, authentication is required.
+                        // All other requests, authentication is required.
                         .anyRequest().authenticated()
 
                 // All users can log in into the system.

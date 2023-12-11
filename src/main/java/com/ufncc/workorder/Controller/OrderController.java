@@ -60,11 +60,15 @@ public class OrderController {
         return "/order/orderCreate";
     }
     @PostMapping("/save")
-    public String saveOrder(@ModelAttribute Order order){
+    public String saveOrder(@ModelAttribute Order order, Model model){
 
         // Saves a new user on it's repository
         System.out.println("New order opened: "+order.toString());
         orderRepo.save(order);
+
+        // Gets all orders plus the new one form the repository
+        List<Order> oderList = (List<Order>) orderRepo.findAll();
+        model.addAttribute("orders", oderList);
 
         // Redirects user to a list of orders.
         return "order/orderRead";
@@ -88,6 +92,7 @@ public class OrderController {
     public String setUpdateOrderData(@ModelAttribute Order newOrder, Model model){
 
         // UPDATE {table} SET {novaPessoa} WHERE ID {novaPessoa.getId()}
+        newOrder.setSolution("");
         orderRepo.save(newOrder);
         System.out.println("Order saved: "+newOrder);
 
