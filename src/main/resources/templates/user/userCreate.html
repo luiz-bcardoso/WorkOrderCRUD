@@ -14,6 +14,51 @@
           th:object =" ${usr}"
           method="post">
         <table>
+
+            <h1><strong>CADASTRO DE USUÁRIO:</strong></h1>
+            <br>
+
+            <div class="field">
+                <label class="label">Login:</label>
+                <div class="control">
+                    <input class="input" type="text" th:field="*{username}" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Senha:</label>
+                <div class="control">
+                    <input class="input" type="password" th:field="*{password}" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Email:</label>
+                <div class="control">
+                    <input class="input" type="text" th:field="*{email}" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Nome:</label>
+                <div class="control">
+                    <input class="input" type="text" th:field="*{name}" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Cargo:</label>
+                <label for="ROLE_SOLICITANTE">Solicitante</label>
+                <input id="ROLE_SOLICITANTE" type="radio" value="ROLE_SOLICITANTE" th:field="*{role}">
+                <br>
+                <label for="ROLE_TECNICO">Técnico</label>
+                <input id="ROLE_TECNICO" type="radio" name="cargo" value="ROLE_TECNICO" th:field="*{role}">
+                <br>
+                <label for="ROLE_ADMIN">Admin</label>
+                <input id="ROLE_ADMIN" type="radio" name="cargo" value="ROLE_ADMIN" th:field="*{role}">
+            </div>
+
+            <!--
             <tr>
                 <td><label> Login: </label></td>
                 <td><input class="input is-primary" type="text" th:field="*{username}" required></td>
@@ -34,9 +79,11 @@
                 <td><label> Cargo: </label></td>
                 <td><input class="input is-primary" type="text" th:field="*{role}" required></td>
             </tr>
-
+        -->
         </table>
-        <button type="submit">Cadastar</button>
+
+        <button class="button is-primary" type="submit">Cadastar</button>
+        <!--<button type="submit">Cadastar</button>-->
     </form>
     </div>
 </main>

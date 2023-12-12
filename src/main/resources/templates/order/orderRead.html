@@ -7,6 +7,18 @@
     <title>Ordens Cadastradas</title>
 </head>
 <main>
+
+    <figure class="image is-128x128">
+        <img class="is-rounded" src="https://www.ufsm.br/app/uploads/2019/12/Dístico.png">
+    </figure>
+
+    <div>
+        <label class="label">CENTRO DE CIÊNCIA DA SAÚDE</label>
+        <label class="label">CURSO DE ODONTOLOGIA</label>
+        <label class="label">UNIVERSIDADE FEDERAL DE SANTA MARIA</label>
+        <br>
+    </div>
+
     <h2>Registro de Ordens Solicitadas</h2>
     <table class="table is-borded">
         <tr>
@@ -26,20 +38,26 @@
             <td th:text="${p.boxNumber}"></td>
             <td th:text="${p.equipment}"></td>
             <td>
-                <a th:href="@{/order/update/{id}(id=${p.id})}"><button>Detalhes</button></a>
-                <a th:href="@{/order/delete/{id}(id=${p.id})}"><button>Remover</button></a>
+                <a th:href="@{/order/update/{id}(id=${p.id})}">
+                    <button class="button is-primary">Detalhes</button>
+                </a>
+                <a th:href="@{/order/delete/{id}(id=${p.id})}">
+                    <button class="button is-primary">Remover</button>
+                </a>
             </td>
         </tr>
     </table>
     <div>
         <a href="/auth/welcome">
-            <button type="submit">Voltar página</button>
+            <button class="button is-primary" type="submit">Voltar página</button>
+            <br><br>
         </a>
         <a href="/order/create">
-            <button type="submit">Criar nova ordem</button>
+            <button class="button is-primary" type="submit">Criar nova ordem</button>
+            <br><br>
         </a>
         <form th:action="@{/auth/logout}" method="post">
-            <input type="submit" value="Logout"/>
+            <input class="button is-primary" type="submit" value="Logout"/>
         </form>
     </div>
 </main>

@@ -20,12 +20,12 @@ import java.util.Set;
 @AllArgsConstructor
 public class CustomUserDetails implements org.springframework.security.core.userdetails.UserDetailsService {
 
-    private UserRepository userRepository;
+    private UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+        User user = userRepo.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not exists by Username or Email"));
 
         // Singleton ensures user have only one role (needed a collection for UserDetails)

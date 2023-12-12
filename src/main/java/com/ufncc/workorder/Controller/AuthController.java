@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 
     @Autowired
-    private UserRepository repoUser;
+    private UserRepository userRepo;
 
     @GetMapping("/welcome")
     public String greeting() {
@@ -43,12 +43,12 @@ public class AuthController {
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user, Model model){
 
-        if(repoUser.existsByUsername(user.getUsername())){
+        if(userRepo.existsByUsername(user.getUsername())){
             // TODO: bad request for existing username on database
             System.out.println("ERR: Username already exists on repository/database");
         }
 
-        else if(repoUser.existsByEmail(user.getEmail())){
+        else if(userRepo.existsByEmail(user.getEmail())){
             // TODO: bad request for existing email on database
             System.out.println("ERR: Email already exists on repository/database");
         }
@@ -59,7 +59,7 @@ public class AuthController {
 
             // Encrypts password with BCrypto and saves it onto the object
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            repoUser.save(user);
+            userRepo.save(user);
         }
 
         // Return to the login form.

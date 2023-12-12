@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org/" th:replace="~{template :: layout (~{:: main})}">
+  <head>
+    <meta charset="UTF-8">
+    <title>Spring Security Example </title>
+  </head>
+  <body>
+    <main>
+      <div th:if="${param.error}">
+        ERRO: Usuário ou senha inválido!
+      </div>
+      <div th:if="${param.logout}">
+        <h1><strong>Você foi desconectado do sistema!</strong></h1>
+        <br>
+      </div>
+      <form th:action="@{/auth/login}" method="post">
+        <div><label class="label"> Login: <input class="input" type="text" name="username"/> </label></div>
+        <div><label class="label"> Senha: <input class="input" type="password" name="password"/> </label></div>
+        <div>
+          <a>Não possui uma conta?</a>
+          <a class="has-text-link" href="/auth/register">Clique aqui</a>
+          <br><br>
+          <input class="button is-primary" type="submit" value="Logar"/>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
   <title>Spring Security Example </title>
 </head>
-<body>
+<body th:replace="~{template :: layout (~{:: main})}">
 <div th:if="${param.error}">
   ERRO: Usuário ou senha inválido!
 </div>
@@ -23,3 +52,4 @@
 </form>
 </body>
 </html>
+-->

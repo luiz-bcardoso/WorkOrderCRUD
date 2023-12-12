@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org/" th:replace="~{template :: layout (~{:: main})}">
 <head>
     <meta charset="UTF-8">
-    <title>Default Webpage</title>
+    <title>Index Page</title>
 </head>
 <body>
-    <h2>Hello World!</h2>
-    <h3>Esta é uma página index default do site.</h3>
-    <div>
-        <a href="/auth/register">Cadastrar no sistema</a>
-    </div>
-    <div>
-        <a href="/auth/welcome">Área de usuário autenticado</a>
-    </div>
+<main>
 
+    <figure class="image is-1by1">
+        <img src="https://raw.githubusercontent.com/matheuskbraga/aulatabela/main/a_imagem/lista-de-controle.png">
+    </figure>
+    <br>
+    <h1 class="title is-2">SISTEMA PARA ORDENS DE SERVIÇO</h1>
+
+</main>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     @GetMapping("/create")
-    public String registerUser(Model model){
+    public String registerOrder(Model model){
 
         //Gets current auth username
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

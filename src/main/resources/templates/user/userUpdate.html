@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{template :: layout (~{:: main})}">
 <head>
   <meta charset="UTF-8">
   <title>Atualizar Cadastro</title>
 </head>
-<body>
-<!--                                                        post = esconde @nome=xxx&-->
-<form action="#" th:action = "@{/user/update}" th:object="${user}" method="post">
-  <table>
-    <tr>
-      <td><label> Id: </label></td>
-      <td><input class="input is-primary" type="text" th:field="*{id}" readonly></td>
-    </tr>
+  <body>
+    <main>
+      <form action="#" th:action = "@{/user/update}" th:object="${user}" method="post">
+          <table>
+            <tr>
+              <td><label class="label"> Id: <input class="input is-primary" type="text" th:field="*{id}" readonly></label><br></td>
+            </tr>
 
-    <tr>
-      <td><label> Login: </label></td>
-      <td><input class="input is-primary" type="text" th:field="*{username}" required></td>
-    </tr>
+            <tr>
+              <td><label class="label"> Login: <input class="input is-primary" type="text" th:field="*{username}" required></label><br></td>
+            </tr>
 
-    <tr>
-      <td><label> Senha: </label></td>
-      <td><input class="input is-primary" type="password" th:field="*{password}" required></td>
-    </tr>
+            <tr>
+              <td><label class="label"> Senha: <input class="input is-primary" type="password" th:field="*{password}" required></label><br></td>
+            </tr>
 
-    <tr>
-      <td><label> Email: </label></td>
-      <td><input class="input is-primary" type="text" th:field="*{email}" required></td>
-    </tr>
+            <tr>
+              <td><label class="label"> Email: <input class="input is-primary" type="text" th:field="*{email}" required></label><br></td>
+            </tr>
 
-    <tr>
-      <td><label> Nome: </label></td>
-      <td><input class="input is-primary" type="text" th:field="*{name}" required></td>
-    </tr>
+            <tr>
 
-    <tr>
-      <td><label> Cargo: </label></td>
-      <td><input class="input is-primary" type="text" th:field="*{role}" required></td>
-    </tr>
+              <td><label class="label"> Nome: <input class="input is-primary" type="text" th:field="*{name}" required></label><br></td>
+            </tr>
 
-  </table>
-  <input type="submit" value="Alterar">
-</form>
-
-</body>
+            <tr>
+              <td><label> <label class="label">Cargo:</label>
+                <label for="ROLE_SOLICITANTE">Solicitante</label>
+                <input id="ROLE_SOLICITANTE" type="radio" value="ROLE_SOLICITANTE" th:field="*{role}">
+                <br>
+                <label for="ROLE_TECNICO">Técnico</label>
+                <input id="ROLE_TECNICO" type="radio" name="cargo" value="ROLE_TECNICO" th:field="*{role}">
+                <br>
+                <label for="ROLE_ADMIN">Admin</label>
+                <input id="ROLE_ADMIN" type="radio" name="cargo" value="ROLE_ADMIN" th:field="*{role}"></label> </td>
+            </tr>
+          </table>
+        <br>
+        <input class="button is-primary" type="submit" value="Alterar">
+      </form>
+    </main>
+  </body>
 </html>

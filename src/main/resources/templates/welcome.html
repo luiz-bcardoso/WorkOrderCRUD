@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      th:replace="~{template :: layout (~{:: main})}">
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
 </head>
-<body>
-<div>
-    <h2 th:inline="text">Bem-vindo <span th:remove="tag" sec:authentication="name">usuário</span>!</h2>
-    <a>Selecione uma opção abaixo:</a>
-
+<main>
+    <body>
     <div>
-        <a>1.</a>
-        <a href="/user/list"> Registro de Pessoas (TÉCNICO)</a>
-    </div>
-    <div>
-        <a>2.</a>
-        <a href="/order/list">Cadastro de Ordens Serviço (SOLICITANTE)</a>
-    </div>
-    <div>
-        <a>3.</a>
-        <a href="/solution/list">Solução para Ordens Serviço (TÉCNICO)</a>
-    </div>
+        <h2 class="title is-2" th:inline="text">Bem-vindo <span th:remove="tag" sec:authentication="name">usuário</span>!</h2>
+        <a class="subtitle is-4">Selecione uma opção abaixo:</a>
+        <br>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_TECNICO')">
+            <a class="has-text-link" href="/user/list"> Acessar registro de usuários </a>
+        </div>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SOLICITANTE')">
 
-    <h2>
-        <form th:action="@{/auth/logout}" method="post">
-            <input type="submit" value="Logout"/>
-        </form>
-    </h2>
-</div>
-
-
-</body>
+            <a class="has-text-link" href="/order/list"> Acessar abertura de ordens de serviço </a>
+        </div>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TECNICO')">
+            <a class="has-text-link" href="/solution/list"> Acessar fechamento de ordens de serviço  </a>
+        </div>
+        <br>
+        <h2>
+            <form th:action="@{/auth/logout}" method="post">
+                <input class="button is-primary" type="submit" value="Logout"/>
+            </form>
+        </h2>
+    </div>
+    </body>
+</main>
 </html>

@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{template :: layout (~{:: main})}">
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Ordem Serviço</title>
 </head>
 <body>
+<main>
+    <figure class="image is-128x128">
+        <img class="is-rounded" src="https://www.ufsm.br/app/uploads/2019/12/Dístico.png">
+    </figure>
+
     <div>
-        <label>CENTRO DE CIÊNCIA DA SAÚDE</label><br>
-        <label>CURSO DE ODONTOLOGIA</label><br>
-        <label>UNIVERSIDADE FEDERAL DE SANTA MARIA</label><br>
-    </div>
-    <div>
-        <h3>Cadastro de Ordem de Serviço de Manutenção</h3>
-        <label>Equipamentos Odontológicos</label><br>
-    </div>
-    <div>
+        <label class="label">CENTRO DE CIÊNCIA DA SAÚDE</label>
+        <label class="label">CURSO DE ODONTOLOGIA</label>
+        <label class="label">UNIVERSIDADE FEDERAL DE SANTA MARIA</label>
         <br>
+    </div>
         <form action="#"
-              th:action = "@{/order/save}"
-              th:object = "${order}"
+              th:action="@{/order/save}"
+              th:object="${order}"
               method="post">
             <table>
                 <tr>
-                    <td><label> Sala (Clínica): </label></td>
-                    <td><input class="input is-primary" type="text" th:field="*{clinicNumber}" required></td>
+                    <td><label class="label"> Sala (Clínica): <input class="input is-primary" type="text" th:field="*{clinicNumber}" required></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Solicitante: </label></td>
-                    <td><input class="input is-primary" type="text" th:field="*{user}" required readonly></td>
+                    <td><label class="label"> Solicitante: <input class="input is-primary" type="text" th:field="*{user}" required readonly></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Data: </label></td>
-                    <td><input class="input is-primary" type="text" th:field="*{creationDate}" required readonly></td>
+                    <td><label class="label"> Data: <input class="input is-primary" type="text" th:field="*{creationDate}" required readonly></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Box Nº: </label></td>
-                    <td><input class="input is-primary" type="text" th:field="*{boxNumber}" required></td>
+                    <td><label class="label"> Box Nº: <input class="input is-primary" type="text" th:field="*{boxNumber}" required></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Equipamento: </label></td>
-                    <td><input class="input is-primary" type="text" th:field="*{equipment}" required></td>
+                    <td><label class="label"> Equipamento: <input class="input is-primary" type="text" th:field="*{equipment}" required></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Problema Relatado: </label></td>
-                    <td><textarea rows="5", cols="50" th:field="*{problem}"></textarea></td>
+                    <td><label class="label"> Problema Relatado: <br><textarea rows="5" , cols="50" th:field="*{problem}"></textarea></label><br></td>
                 </tr>
                 <tr>
-                    <td><label> Correção Realizada: </label></td>
-                    <td><textarea rows="5", cols="50" th:field="*{solution}" readonly></textarea></td>
+                    <td><label class="label"> Correção Realizada: <br><textarea rows="5" , cols="50" th:field="*{solution}" readonly></textarea></label><br></td>
                 </tr>
             </table>
-            <button type="submit">Cadastar nova ordem</button>
+            <br>
+            <button class="button is-primary" type="submit">Cadastar nova ordem</button>
         </form>
     </div>
+</main>
 </body>
 </html>

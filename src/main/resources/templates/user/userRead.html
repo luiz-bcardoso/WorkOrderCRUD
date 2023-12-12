@@ -24,17 +24,19 @@
           <td th:text="${p.name}"></td>
           <td th:text="${p.role}"></td>
           <td>
-              <a th:href="@{/user/update/{id}(id=${p.id})}"><button>Editar</button></a>
-              <a th:href="@{/user/delete/{id}(id=${p.id})}"><button>Remover</button></a>
+              <a th:href="@{/user/update/{id}(id=${p.id})}"><button class="button is-primary">Editar</button></a>
+              <a th:href="@{/user/delete/{id}(id=${p.id})}"><button class="button is-primary">Remover</button></a>
+
           </td>
       </tr>
   </table>
     <div>
         <a href="/auth/welcome">
-            <button type="submit">Voltar página</button>
+            <button class="button is-primary" type="submit">Voltar página</button>
+            <br><br>
         </a>
         <form th:action="@{/auth/logout}" method="post">
-            <input type="submit" value="Logout"/>
+            <input class="button is-primary" type="submit" value="Logout"/>
         </form>
     </a>
     </div>
